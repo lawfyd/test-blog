@@ -62,6 +62,7 @@ require "../includes/config.php";
       </div>
     </div>
 
+
     <footer id="footer">
       <div class="container">
         <div class="footer__logo">
