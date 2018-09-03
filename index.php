@@ -1,8 +1,12 @@
+<?php
+require "includes/config.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Блог IT_Минималиста!</title>
+  <title><?php echo $config['title']; ?></title>
 
   <!-- Bootstrap Grid -->
   <link rel="stylesheet" type="text/css" href="/media/assets/bootstrap-grid-only/css/grid12.css">
@@ -21,7 +25,7 @@
       <div class="header__top">
         <div class="container">
           <div class="header__top__logo">
-            <h1>Блог IT_Минималиста</h1>
+            <h1><?php echo $config['title']; ?></h1>
           </div>
           <nav class="header__top__menu">
             <ul>

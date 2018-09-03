@@ -1,6 +1,6 @@
 <?php 
 
-$cofig = array(
+$config = array(
 	'title' => 'Blog of Dima',
 	'db' => array(
 			'server' => 'localhost',
