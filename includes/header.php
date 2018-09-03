@@ -14,17 +14,20 @@
         </div>
       </div>
 
+      <?php
+        $categories = mysqli_query($connection, "SELECT * FROM `articles_categories`");
+      ?>
       <div class="header__bottom">
         <div class="container">
           <nav>
             <ul>
-              <li><a href="#">Безопасность</a></li>
-              <li><a href="#">Программирование</a></li>
-              <li><a href="#">Lifestyle</a></li>
-              <li><a href="#">Музыка</a></li>
-              <li><a href="#">Саморазвитие</a></li>
-              <li><a href="#">Гайды</a></li>
-              <li><a href="#">Обзоры</a></li>
+              <?php
+                while ( $cat = mysqli_fetch_assoc($categories) ) {
+                  ?>
+                    <li><a href="#"><?php echo $cat['title']; ?></a></li>
+                  <?php
+                }
+              ?>
             </ul>
           </nav>
         </div>
