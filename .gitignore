@@ -1,3 +1,4 @@
 includes/config.php
 media/images/
 media/assets/
+static/*

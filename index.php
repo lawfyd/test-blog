@@ -33,6 +33,29 @@ require "includes/config.php";
               <div class="block__content">
                 <div class="articles articles__horizontal">
 
+                  <?php
+                    $articles = mysqli_query($connection, "SELECT * FROM `articles`");
+                  ?>
+
+                  <?php
+                    while ($art = mysqli_fetch_assoc($articles)) {
+                    ?>
+
+                    <article class="article">
+                    <div class="article__image" style="background-image: url(/static/images/<?php echo $art['image']; ?>);"></div>
+                    <div class="article__info">
+                      <a href="/article?id=<?php echo $art['id']; ?>"><?php echo $art['title']; ?></a>
+                      <div class="article__info__meta">
+                        <small>Категория: <a href="#">Программирование</a></small>
+                      </div>
+                      <div class="article__info__preview"><?php echo mb_substr($art['text'], 0, 50, 'utf-8'); ?></div>
+                    </div>
+                  </article>
+
+                    <?php
+                    }
+                  ?>
+
                   <article class="article">
                     <div class="article__image" style="background-image: url(/media/images/post-image.jpg);"></div>
                     <div class="article__info">
