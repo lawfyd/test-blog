@@ -34,7 +34,7 @@ require "includes/config.php";
                 <div class="articles articles__horizontal">
 
                   <?php
-                    $articles = mysqli_query($connection, "SELECT * FROM `articles`");
+                    $articles = mysqli_query($connection, "SELECT * FROM `articles` ORDER BY `id` DESC LIMIT 10");
                   ?>
 
                   <?php
@@ -44,9 +44,18 @@ require "includes/config.php";
                     <article class="article">
                     <div class="article__image" style="background-image: url(/static/images/<?php echo $art['image']; ?>);"></div>
                     <div class="article__info">
-                      <a href="/article?id=<?php echo $art['id']; ?>"><?php echo $art['title']; ?></a>
+                      <a href="/article.php?id=<?php echo $art['id']; ?>"><?php echo $art['title']; ?></a>
                       <div class="article__info__meta">
-                        <small>Категория: <a href="#">Программирование</a></small>
+                        <?php
+                          $art_cat = false;
+                          foreach ($categories as $cat) {
+                            if ($cat['id'] == $art['categorie_id']) {
+                              $art_cat = $cat;
+                              break;
+                            }
+                          }
+                        ?>
+                        <small>Категория: <a href="/categorie.php?id=<?php echo $art_cat['id'] ?>"><?php echo $art_cat['title']; ?></a></small>
                       </div>
                       <div class="article__info__preview"><?php echo mb_substr($art['text'], 0, 50, 'utf-8'); ?></div>
                     </div>
@@ -56,107 +65,11 @@ require "includes/config.php";
                     }
                   ?>
 
-                  <article class="article">
-                    <div class="article__image" style="background-image: url(/media/images/post-image.jpg);"></div>
-                    <div class="article__info">
-                      <a href="#">Название статьи</a>
-                      <div class="article__info__meta">
-                        <small>Категория: <a href="#">Программирование</a></small>
-                      </div>
-                      <div class="article__info__preview">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna ...</div>
-                    </div>
-                  </article>
-
-                  <article class="article">
-                    <div class="article__image"></div>
-                    <div class="article__info">
-                      <a href="#">Название статьи #2</a>
-                      <div class="article__info__meta">
-                        <small>Категория: <a href="#">Lifestyle</a></small>
-                      </div>
-                      <div class="article__info__preview">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna ...</div>
-                    </div>
-                  </article>
-
-                  <article class="article">
-                    <div class="article__image"></div>
-                    <div class="article__info">
-                      <a href="#">Название статьи #3</a>
-                      <div class="article__info__meta">
-                        <small>Категория: <a href="#">Программирование</a></small>
-                      </div>
-                      <div class="article__info__preview">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna ...</div>
-                    </div>
-                  </article>
-
-                  <article class="article">
-                    <div class="article__image"></div>
-                    <div class="article__info">
-                      <a href="#">Название статьи #4</a>
-                      <div class="article__info__meta">
-                        <small>Категория: <a href="#">Lifestyle</a></small>
-                      </div>
-                      <div class="article__info__preview">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna ...</div>
-                    </div>
-                  </article>
-
                 </div>
               </div>
             </div>
 
-            <div class="block">
-              <a href="#">Все записи</a>
-              <h3>Безопасность [Новейшее]</h3>
-              <div class="block__content">
-                <div class="articles articles__horizontal">
-
-                  <article class="article">
-                    <div class="article__image"></div>
-                    <div class="article__info">
-                      <a href="#">Название статьи</a>
-                      <div class="article__info__meta">
-                        <small>Категория: <a href="#">Программирование</a></small>
-                      </div>
-                      <div class="article__info__preview">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna ...</div>
-                    </div>
-                  </article>
-
-                  <article class="article">
-                    <div class="article__image"></div>
-                    <div class="article__info">
-                      <a href="#">Название статьи #2</a>
-                      <div class="article__info__meta">
-                        <small>Категория: <a href="#">Lifestyle</a></small>
-                      </div>
-                      <div class="article__info__preview">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna ...</div>
-                    </div>
-                  </article>
-
-                  <article class="article">
-                    <div class="article__image"></div>
-                    <div class="article__info">
-                      <a href="#">Название статьи #3</a>
-                      <div class="article__info__meta">
-                        <small>Категория: <a href="#">Программирование</a></small>
-                      </div>
-                      <div class="article__info__preview">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna ...</div>
-                    </div>
-                  </article>
-
-                  <article class="article">
-                    <div class="article__image"></div>
-                    <div class="article__info">
-                      <a href="#">Название статьи #4</a>
-                      <div class="article__info__meta">
-                        <small>Категория: <a href="#">Lifestyle</a></small>
-                      </div>
-                      <div class="article__info__preview">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna ...</div>
-                    </div>
-                  </article>
-
-                </div>
-              </div>
-            </div>
+            
 
             <div class="block">
               <a href="#">Все записи</a>
