@@ -82,21 +82,9 @@
                       <div class="article__info__preview"><?php echo mb_substr(strip_tags($comment['text']), 0, 100, 'utf-8') . ' ...'; ?></div>
                     </div>
                   </article>
-
                     <?php
                     }
                   ?>
-
-                  <article class="article">
-                    <div class="article__image" style="background-image: url(/media/images/post-image.jpg);"></div>
-                    <div class="article__info">
-                      <a href="#">Jonny Flame</a>
-                      <div class="article__info__meta">
-                        <small><a href="#">Название статьи #1</a></small>
-                      </div>
-                      <div class="article__info__preview">Бла бла бла бла бла бла бла, и думаю еще что бла бла бла бла бла бла бла ...</div>
-                    </div>
-                  </article>
 
                 </div>
               </div>
