@@ -60,14 +60,14 @@
                     ?>
 
                     <article class="article">
-                    <div class="article__image" style="background-image: url(https://gravatar.com/avatar/<?php md5($comment['email']); ?>?s=125);"></div>
+                    <div class="article__image" style="background-image: url(https://www.gravatar.com/avatar/<?php md5($comment['email']); ?>?s=125);"></div>
                     <div class="article__info">
-                      <a href="#"><?php echo $comment['nickname']; ?></a>
+                      <a href="/article.php?id=<?php echo $comment['articles_id']; ?>"><?php echo $comment['author']; ?></a>
                       <div class="article__info__meta">
                         <?php
                               $art_comm = false;
                               foreach ($articles as $art) {
-                                if ($art['id'] == $comment['article_id']) {
+                                if ($art['id'] == $comment['articles_id']) {
                                   $art_comm = $art;
                                   break;
                                 }
