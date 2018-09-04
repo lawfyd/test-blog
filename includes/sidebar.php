@@ -42,8 +42,6 @@
                     }
                   ?>
 
-                  
-
                 </div>
               </div>
             </div>
@@ -53,49 +51,41 @@
               <div class="block__content">
                 <div class="articles articles__vertical">
 
-                  <article class="article">
-                    <div class="article__image" style="background-image: url(/media/images/post-image.jpg);"></div>
+                  <?php
+                    $comments = mysqli_query($connection, "SELECT * FROM `comments` ORDER BY `id` DESC LIMIT 5");
+                  ?>
+
+                  <?php
+                    while ($comment = mysqli_fetch_assoc($comments)) {
+                    ?>
+
+                    <article class="article">
+                    <div class="article__image" style="background-image: url(https://gravatar.com/avatar/<?php md5($comment['email']); ?>?s=125);"></div>
                     <div class="article__info">
-                      <a href="#">Jonny Flame</a>
+                      <a href="#"><?php echo $comment['nickname']; ?></a>
                       <div class="article__info__meta">
-                        <small><a href="#">Название статьи #1</a></small>
+                        <?php
+                              $art_comm = false;
+                              foreach ($articles as $art) {
+                                if ($art['id'] == $comment['article_id']) {
+                                  $art_comm = $art;
+                                  break;
+                                }
+                              }
+                            ?>
+                        <small>
+                          <a href="#">
+                            <?php echo $art['title']; ?>
+                          </a>
+                        </small>
                       </div>
-                      <div class="article__info__preview">Бла бла бла бла бла бла бла, и думаю еще что бла бла бла бла бла бла бла ...</div>
+                      <div class="article__info__preview"><?php echo mb_substr(strip_tags($comment['text']), 0, 100, 'utf-8') . ' ...'; ?></div>
                     </div>
                   </article>
 
-                  <article class="article">
-                    <div class="article__image" style="background-image: url(/media/images/post-image.jpg);"></div>
-                    <div class="article__info">
-                      <a href="#">Jonny Flame</a>
-                      <div class="article__info__meta">
-                        <small><a href="#">Название статьи #1</a></small>
-                      </div>
-                      <div class="article__info__preview">Бла бла бла бла бла бла бла, и думаю еще что бла бла бла бла бла бла бла ...</div>
-                    </div>
-                  </article>
-
-                  <article class="article">
-                    <div class="article__image" style="background-image: url(/media/images/post-image.jpg);"></div>
-                    <div class="article__info">
-                      <a href="#">Jonny Flame</a>
-                      <div class="article__info__meta">
-                        <small><a href="#">Название статьи #1</a></small>
-                      </div>
-                      <div class="article__info__preview">Бла бла бла бла бла бла бла, и думаю еще что бла бла бла бла бла бла бла ...</div>
-                    </div>
-                  </article>
-
-                  <article class="article">
-                    <div class="article__image" style="background-image: url(/media/images/post-image.jpg);"></div>
-                    <div class="article__info">
-                      <a href="#">Jonny Flame</a>
-                      <div class="article__info__meta">
-                        <small><a href="#">Название статьи #1</a></small>
-                      </div>
-                      <div class="article__info__preview">Бла бла бла бла бла бла бла, и думаю еще что бла бла бла бла бла бла бла ...</div>
-                    </div>
-                  </article>
+                    <?php
+                    }
+                  ?>
 
                   <article class="article">
                     <div class="article__image" style="background-image: url(/media/images/post-image.jpg);"></div>
